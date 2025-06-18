@@ -24,6 +24,10 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+tasks.named('bootBuildImage') {
+    imageName = 'honux-time-app:latest'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
