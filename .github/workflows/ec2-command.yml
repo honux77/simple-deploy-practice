@@ -1,0 +1,19 @@
+name: SSH to EC2 and run command
+
+on:
+  workflow_dispatch: # 수동 실행
+
+jobs:
+  ssh-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Run command on EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@3.34.xx.xx "uname -a && uptime"
