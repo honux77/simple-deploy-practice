@@ -15,5 +15,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: Run command on EC2
+        env:
+          HOST: ${{ vars.UBUNTU_HOST }}
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@3.34.xx.xx "uname -a && uptime"
+          ssh -o StrictHostKeyChecking=no ubuntu@$HOST "uname -a && uptime"
